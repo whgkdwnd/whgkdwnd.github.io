@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "노션에서 가져온 글"
+title: "택배 상자 꺼내기"
 date: 2025-12-13
 categories: [notion, markdown]
 ---
