@@ -1,9 +1,10 @@
 ---
-title: "택배상자 꺼내기"
+title: 택배상자 꺼내기
 tags:
-    - 반복문
-date: "2023-12-04"
-thumbnail: "/assets/img/thumbnail/paper_box.jpg"
+  - 반복문
+  - 레벨_1
+date: 2025-12-04
+thumbnail: /assets/img/thumbnail/paper_box.jpg
 ---
 
 
@@ -36,52 +37,54 @@ thumbnail: "/assets/img/thumbnail/paper_box.jpg"
         
         유효숫자가 아닐경우 return 배열의 높이 - num의 높이
         
-        - 코드
-            
-            int solution(int n, int w, int num) {
-            int count = 1;
-            int total_floor = (n / w) + 1;
-            int** a = new int* [total_floor];// 배열 생성
-            for (int i = 0; i < total_floor; i++) {
-            a[i] = new int[w];
-            if (i % 2 == 0) {
+코드
+```cpp
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(int n, int w, int num) {
+    int count = 1;
+    int total_floor = (n / w) + 1;
+    int** a = new int* [total_floor];
+    for (int i = 0; i < total_floor; i++) {
+        a[i] = new int[w];
+        if (i % 2 == 0) {
             for (int j = 0; j < w; j++) {
-            a[i][j] = count;
-            count++;
+                a[i][j] = count;
+                count++;
             }
-            }
-            else
-            {
+        }
+        else
+        {
             count += w-1;
             for (int j = 0; j < w; j++) {
-            a[i][j] = count;
-            count--;
+                a[i][j] = count;
+                count--;
             }
             count += w+1;
-            }
-            
-            ```
-            }
-            int floor = (num) / w;
-            if ((num) % w == 0) {// 내림을 기준으로 설계했는데 나누어 떨어지면 강제로 1을 낮춤
-                floor--;
-            }
-            int location = 0;
-            for (int i = 0; i < w; i++) {//원하는 수 위치 찾기
-                if (a[floor][i] == num) {
-                    location = i;
-                    break;
-                }
-            }
-            int now_floor = floor + 1;
-            if (a[total_floor - 1][location] > n) {// 맨 윗값이 오버한 값이냐를 물어보기
-                return total_floor - now_floor;// oo 오버한 값이다
-            }
-            else
-            {
-                return total_floor - now_floor + 1;// 우리는 맨 위에 하나 더 있어
-            }
-            
-            ```
-            
-            }
+        }
+        
+    }
+    int floor = (num) / w;
+    if ((num) % w == 0) {
+        floor--;
+    }
+    int location = 0;
+    for (int i = 0; i < w; i++) {
+        if (a[floor][i] == num) {
+            location = i;
+            break;
+        }
+    }
+    int now_floor = floor + 1;
+    if (a[total_floor - 1][location] > n) {// 맨 윗값이 오버한 값이냐를 물어보기
+        return total_floor - now_floor;// oo 오버한 값이다
+    }
+    else
+    {
+        return total_floor - now_floor + 1;// 우리는 맨 위에 하나 더 있어
+    }
+}
+```
